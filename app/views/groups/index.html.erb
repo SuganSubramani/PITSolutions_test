@@ -1,0 +1,27 @@
+<h3>Groups</h3>
+<div class="row">
+	<div class="col-md-10">
+		<% if @groups.present? %>
+			<table class="table table-striped" id="users_table">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Detail</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @groups.each do |group| %>
+						<tr>
+							<td><%= link_to(group.name , group) %></td>
+							<td><%= group.details %></td>
+							<td><%=link_to 'Edit', edit_group_path(group) %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			No Records Found
+		<% end %>
+	</div>
+</div>

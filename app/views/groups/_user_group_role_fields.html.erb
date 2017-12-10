@@ -1,0 +1,16 @@
+<div class="col-md-12">
+	<div class="row">
+		<div class ="col-md-6">
+	  		<div class="form-group">
+	    		<label for="user_id" class="control-label">User Name</label>
+	    		<%= f.collection_select :user_id, User.all, :id, :name,{:prompt => "Select User"},:class => "user_field" %>
+	  		</div>
+		</div>
+		<div class ="col-md-6">
+	  		<div class="form-group">
+	    		<label for="user_id" class="control-label">Role</label></br>
+    			<%= f.select :role_id, options_for_select(UserGroupRole::Roles,f.object.role_id),{:prompt => "Select Role"},:class => "role_field" %>
+	  		</div>
+		</div>
+	</div>
+</div>

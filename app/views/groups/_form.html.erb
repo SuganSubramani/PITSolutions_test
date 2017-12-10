@@ -1,0 +1,45 @@
+<div class="row">
+	<%= form_for @group do |f| %> 
+		<div class="col-md-12">
+			<% if @group.errors.any? %>
+			  <div id="error_explanation">
+			    <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+			 
+			    <ul>
+			    <% @group.errors.full_messages.each do |msg| %>
+			      <li><%= msg %></li>
+			    <% end %>
+			    </ul>
+			  </div>
+			<% end %>
+		    <div class="row">
+			  <div class="form-group">
+			    <label for="name" class="col-sm-2 control-label" required = "true"> Name</label>
+			    <div class="col-sm-4">
+			    	<%= f.text_field :name, :class => "form-control", :placeholder => "Enter Group Name" %>
+			    </div>
+			  </div>
+			</div></br>
+			<div class="row">
+			  <div class="form-group">
+			    <label for="name" class="col-sm-2 control-label">Details (optional)</label>
+			    <div class="col-sm-4">
+			    	<%= f.text_area :details, :class => "form-control", :placeholder => "Enter Details",:rows => 3,:cols => 4 %>
+			    </div>
+			  </div>
+			</div></br>
+			<div class="row">
+				<h4>Adding Group Members</h4>
+				<%= f.fields_for :user_group_roles do |builder| %>
+					<%= render "user_group_role_fields", :f => builder %>
+				<% end %>
+				<div class="add_links">
+			      <%= link_to_add_fields 'Add New Members', f, :user_group_roles%>
+				</div>
+			</div></br>
+
+			<%= f.submit "Save Group", class: "btn btn-md btn-primary",:id => "form_submit" %>
+			<%=link_to "Cancel", groups_path, :class => "btn btn-md btn-default" %>
+		</div>
+	<% end %>
+</div>
